@@ -1,0 +1,36 @@
+<body>
+  <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css">
+
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'posts:index' %}">Home</a></li>
+          {% if user.id %}
+          <li class="active"><a href="#">Connected as : <strong>{{user.username}}</strong></a></li>
+          <li><a 
+            href="{% url 'posts:write' %}" 
+            class="btn btn-success" 
+            style="color:white" 
+            onmouseover="this.style.color='black'" 
+            onmouseout="this.style.color='white'">Write</a></li>
+          <li><a href="{% url 'posts:logout' %}">log out</a></li>
+
+          {% else %}
+          <li><a href="{% url 'posts:login' %}">log in</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="content container">
+    <div class="row">
+      <div class="col-md-12">
+        {% block content %} {% endblock %}
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<div class="jumbotron">
+  <h1> Articles from {{category_label}} tag</h1> {% if articles %}
+  <div class="list-group">
+
+  </div>
+
+  {% for article in articles %}
+  <a href="{% url 'posts:detail' article.id %}" class="list-group-item">
+    <h4 class="list-group-item-heading">{{ article.article_title|truncatechars:30 }}</h4>
+    <p class="list-group-item-text">{{ article.article_text|truncatechars:60 }}</p>
+  </a>
+  {% endfor %} {% else %}
+  <p>No posts are tagged in this category.</p>
+  {% endif %}
+  <div>
+    <a href="{% url 'posts:index' %}" class="btn btn-primary" style="display:block">Back to home</a>
+  </div>
+</div>
+{% endblock %}

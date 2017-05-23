@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Last Articles</h1>
+  {% if latest_posts_list %}
+      <ul>
+      {% for article in latest_posts_list %}
+        <li><a href="{% url 'posts:detail' article.id %}">[ {{ article.category.category_label }} ] {{ article.article_title|truncatechars:30 }}</a></li>   
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>No posts are available.</p>
+  {% endif %}
+
+
+  <h1> Last Articles</h1>
+  {% if alphabetical_categories_list %}
+      <ul>
+      {% for article in alphabetical_categories_list %}
+        <li><a href="{% url 'posts:category' article.category_label %}">{{ article.category_label }}</a></li>   
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>No posts are available.</p>
+  {% endif %}
+  
+{% endblock %}
+
