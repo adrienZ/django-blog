@@ -36,11 +36,11 @@ class WriteView(generic.CreateView):
     def form_valid(self, form):
         form.instance.pub_date = timezone.now()
         return super(WriteView, self).form_valid(form)
-        
+
 #
 #   CATEGORY VIEW
 #
-class category(generic.DetailView):
+class CategoryView(generic.DetailView):
     model = Category
     template_name = 'posts/category.html'
 
