@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from .models import Article, Category
 from .forms import ArticleForm
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #
 #   INDEX VIEW
@@ -29,9 +30,11 @@ class IndexView(generic.ListView):
 #
 #   WRITE VIEW
 #
-class WriteView(generic.CreateView):
+class WriteView(LoginRequiredMixin, generic.CreateView):
     form_class = ArticleForm
     template_name = 'posts/write.html'
+    login_url = '/posts/login/'
+
 
     def form_valid(self, form):
         form.instance.pub_date = timezone.now()
